@@ -9,6 +9,7 @@ lifecycleRuntimeKtx = "2.8.6"
 activityCompose = "1.9.2"
 composeBom = "2024.09.02"
 mapsVersion="6.1.2"
+secretsPluginVersion = "2.0.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -31,3 +32,4 @@ maps-compose = {group="com.google.maps.android", name = "maps-compose", version.
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+secrets = {id = "com.google.android.libraries.mapsplatform.secrets-gradle-plugin", version.ref="secretsPluginVersion"}
