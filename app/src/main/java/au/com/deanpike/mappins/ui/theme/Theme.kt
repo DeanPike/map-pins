@@ -1,37 +1,42 @@
 package au.com.deanpike.mappins.ui.theme
 
-import android.os.Build
+import android.annotation.SuppressLint
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.material.ripple.RippleAlpha
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.LocalRippleConfiguration
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.darkColorScheme
-import androidx.compose.material3.dynamicDarkColorScheme
-import androidx.compose.material3.dynamicLightColorScheme
+import androidx.compose.material3.RippleConfiguration
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.platform.LocalContext
+import androidx.compose.runtime.CompositionLocalProvider
+import au.com.deanpike.mappins.ui.theme.provider.*
+import au.com.domain.androiddesigntoken.color.DomainColors
+import au.com.domain.androiddesigntoken.color.DomainLightColors
 
-private val DarkColorScheme = darkColorScheme(
-    primary = Purple80,
-    secondary = PurpleGrey80,
-    tertiary = Pink80
+@SuppressLint("ConflictingOnColor")
+private val LightColorPalette = lightColorScheme(
+    primary = DomainLightColors.primaryBaseDefault,
+    onPrimary = DomainLightColors.primarySurfaceDefault,
+    secondary = DomainLightColors.secondaryBaseDefault,
+    onSecondary = DomainLightColors.secondarySurfaceDefault,
+    /** for light grey background override this background setup
+     * with NeutralSurfaceDefault in the component UI **/
+    background = DomainLightColors.neutralBackgroundDefault,
+    onBackground = DomainLightColors.neutralHeavyDefault,
+    surface = DomainLightColors.neutralSurfaceDefault,
+    onSurface = DomainLightColors.neutralHeavyDefault,
+    error = DomainLightColors.criticalSubduedDefault,
+    onError = DomainLightColors.criticalHeavyDefault
 )
 
-private val LightColorScheme = lightColorScheme(
-    primary = Purple40,
-    secondary = PurpleGrey40,
-    tertiary = Pink40
+private val DomainRippleAlpha = RippleAlpha(0.25f, 0.25f, 0.25f, 0.25f)
 
-    /* Other default colors to override
-    background = Color(0xFFFFFBFE),
-    surface = Color(0xFFFFFBFE),
-    onPrimary = Color.White,
-    onSecondary = Color.White,
-    onTertiary = Color.White,
-    onBackground = Color(0xFF1C1B1F),
-    onSurface = Color(0xFF1C1B1F),
-    */
-)
+@OptIn(ExperimentalMaterial3Api::class)
+private val DomainRippleConfiguration = RippleConfiguration(color = DomainLightColors.interactiveBaseDefault, rippleAlpha = DomainRippleAlpha)
 
+
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MappinsTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
@@ -39,18 +44,27 @@ fun MappinsTheme(
     dynamicColor: Boolean = true,
     content: @Composable () -> Unit
 ) {
-    val colorScheme = when {
-        dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
-            val context = LocalContext.current
-            if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
-        }
-        darkTheme -> DarkColorScheme
-        else -> LightColorScheme
-    }
+    val widthWidthSizeClass = DomainWindowWidthSizeClassProvider.get()
+    val heightSizeClass = DomainWindowHeightSizeClassProvider.get()
+    val isFoldable = DomainWindowWidthSizeClassProvider.isFoldable()
 
     MaterialTheme(
-        colorScheme = colorScheme,
-        typography = Typography,
-        content = content
-    )
+        colorScheme = LightColorPalette
+    ) {
+        CompositionLocalProvider(
+            LocalRippleConfiguration provides DomainRippleConfiguration,
+            LocalDomainDimension provides fun(): DomainDimension {
+                return DomainDimensionByWindowWidthSize.get(windowWidthSizeClass = widthWidthSizeClass, isFoldable = isFoldable)
+            },
+            LocalDomainColor provides fun(): DomainColors {
+                return DomainColorsByConfig.get(darkTheme = darkTheme)
+            },
+            LocalDomainWindowWidthSizeClass provides widthWidthSizeClass,
+            LocalDomainWindowHeightSizeClass provides heightSizeClass,
+            LocalDomainTypography provides fun(): DomainTypography {
+                return DomainTypographyByWindowWidthSize.get(windowWidthSizeClass = widthWidthSizeClass, isFoldable = isFoldable)
+            },
+            content = content,
+        )
+    }
 }

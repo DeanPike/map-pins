@@ -10,6 +10,9 @@ activityCompose = "1.9.2"
 composeBom = "2024.09.02"
 mapsVersion="6.1.2"
 secretsPluginVersion = "2.0.1"
+windowSizeVersion = "1.3.0@aar"
+androidDesignToken = "3.44.0"
+window = "1.3.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -27,6 +30,9 @@ androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-man
 androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
 maps-compose = {group="com.google.maps.android", name = "maps-compose", version.ref="mapsVersion"}
+material3WindowSizeClass = {group="androidx.compose.material3", name = "material3-window-size-class", version.ref="windowSizeVersion"}
+android-design-token = { module = "au.com.domain:android-design-token", version.ref = "androidDesignToken" }
+androidx-window = { group = "androidx.window", name = "window", version.ref = "window" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

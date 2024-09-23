@@ -61,6 +61,9 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     implementation(libs.maps.compose)
+    implementation(libs.material3WindowSizeClass)
+    implementation(libs.android.design.token)
+    implementation(libs.androidx.window)
 
     testImplementation(libs.junit)
 

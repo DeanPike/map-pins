@@ -3,57 +3,95 @@ package au.com.deanpike.mappins.components.pins
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.defaultMinSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.offset
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import au.com.deanpike.mappins.R
-import au.com.deanpike.mappins.ui.theme.MapPinBorder
 import au.com.deanpike.mappins.ui.theme.MappinsTheme
-import au.com.deanpike.mappins.ui.theme.ViewingUnsoldMapPinBackground
+import au.com.deanpike.mappins.ui.theme.provider.LocalDomainColor
+import au.com.domain.androiddesigntoken.typography.DomainTypography
 
 @Composable
-fun ViewingUnsoldMapPin(text: String) {
+fun ViewingUnsoldMapPin(
+    isShortListed: Boolean = false,
+    markerCount: String = ""
+) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Box(
             modifier = Modifier
+                .padding(1.dp)
+                .border(width = 2.dp, shape = RoundedCornerShape(12.dp), color = LocalDomainColor.current().neutralSurfaceDefault)
                 .background(
-                    color = ViewingUnsoldMapPinBackground,
+                    color = if (isShortListed) LocalDomainColor.current().interactiveBaseSelected else LocalDomainColor.current().interactiveBasePressed,
                     shape = RoundedCornerShape(12.dp)
                 )
-                .border(2.dp, MapPinBorder, RoundedCornerShape(12.dp))
-                .defaultMinSize(minWidth = 24.dp, minHeight = 24.dp),
-            contentAlignment = Alignment.Center
+                .defaultMinSize(24.dp, 24.dp)
+
         ) {
-            Text(
-                modifier = Modifier.padding(start = 4.dp, end = 4.dp),
-                text = text,
-                color = Color.White,
-                textAlign = TextAlign.Center,
-                style = MaterialTheme.typography.bodySmall
-            )
+            val rowPadding = if (isShortListed) {
+                if (markerCount.isEmpty()) {
+                    0.dp
+                } else {
+                    6.dp
+                }
+            } else {
+                if (markerCount.length > 2) {
+                    6.dp
+                } else {
+                    4.dp
+                }
+            }
+            Row(
+                modifier = Modifier
+                    .align(Alignment.Center)
+                    .padding(start = rowPadding, end = rowPadding),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.Center
+            ) {
+                if (isShortListed) {
+                    Icon(
+                        modifier = Modifier
+                            .height(11.dp)
+                            .width(11.dp),
+                        painter = painterResource(id = R.drawable.star_filled),
+                        contentDescription = "Shortlisted",
+                        tint = LocalDomainColor.current().accentFourTrimDefault,
+                    )
+                }
+
+                if (isShortListed && markerCount.isNotBlank()) {
+                    Spacer(modifier = Modifier.width(2.dp))
+                }
+
+                if (markerCount.isNotBlank()) {
+                    Text(
+                        modifier = Modifier
+                            .align(Alignment.CenterVertically),
+                        text = markerCount,
+                        style = DomainTypography.CompactMini,
+                        color = LocalDomainColor.current().neutralSurfaceDefault,
+                        textAlign = TextAlign.Start,
+                    )
+                }
+            }
         }
         Image(
-            modifier = Modifier.offset(x = 0.dp, y = (-5.3).dp),
-            painter = painterResource(id = R.drawable.viewing_unsold_map_pin_tip),
-            contentDescription = "Pointer tip"
+            modifier = Modifier.offset {
+                IntOffset(x = 0, y = with(this) { -7.dp.roundToPx() })
+            },
+            painter = painterResource(id = if (isShortListed) R.drawable.unsold_shortlisted_viewing_tip else R.drawable.unsold_viewing_tip),
+            contentDescription = "unseen viewing pin tip"
         )
     }
 }
@@ -62,12 +100,26 @@ fun ViewingUnsoldMapPin(text: String) {
 @Composable
 fun ViewingUnsoldMapPinPreview() {
     MappinsTheme {
-        Row(modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceAround) {
-            ViewingUnsoldMapPin("8")
-            ViewingUnsoldMapPin("88")
-            ViewingUnsoldMapPin("888")
-            ViewingUnsoldMapPin("22")
+        Column(
+            modifier = Modifier.fillMaxWidth(),
+            verticalArrangement = Arrangement.SpaceAround
+        ) {
+            ViewingUnsoldMapPin(
+                isShortListed = false,
+                markerCount = "8"
+            )
+            ViewingUnsoldMapPin(
+                isShortListed = true,
+                markerCount = "8"
+            )
+            ViewingUnsoldMapPin(
+                isShortListed = false,
+                markerCount = "88"
+            )
+            ViewingUnsoldMapPin(
+                isShortListed = true,
+                markerCount = "88"
+            )
         }
     }
 }
