@@ -6,8 +6,10 @@ import au.com.deanpike.mappins.R
 import au.com.deanpike.mappins.components.MapPinData
 import au.com.deanpike.mappins.components.pins.SchoolMapPin
 import au.com.deanpike.mappins.components.pins.SoldMapPin
+import au.com.deanpike.mappins.components.pins.SoldViewingMapPin
 import au.com.deanpike.mappins.components.pins.UnSoldMapPin
-import au.com.deanpike.mappins.type.PinToCreateType
+import au.com.deanpike.mappins.components.pins.UnsoldViewingMapPin
+import au.com.deanpike.mappins.type.PinType
 import au.com.deanpike.mappins.type.SchoolCatchmentType
 import au.com.deanpike.mappins.type.SoldIconType
 import au.com.deanpike.mappins.ui.theme.provider.LocalDomainColor
@@ -68,14 +70,39 @@ fun CreateMapIcon(
     data: MapPinData
 ) {
     when (data.pinType) {
-        PinToCreateType.UNSOLD_PIN -> UnSoldMapPin()
-        PinToCreateType.UNSOLD_PIN_WITH_COUNT -> UnSoldMapPin(markerCount = "8")
-        PinToCreateType.UNSOLD_VIEWED_PIN -> UnSoldMapPin(isViewed = true)
-        PinToCreateType.UNSOLD_SHORTLIST_PIN -> UnSoldMapPin(isShortListed = true)
-        PinToCreateType.SOLD_PIN -> SoldMapPin(markerPrice = "$1.2m")
-        PinToCreateType.SOLD_SHORTLIST_PIN -> SoldMapPin(isShortListed = true, markerPrice = "$1.2m")
-        PinToCreateType.PRIMARY_SCHOOL_PIN -> SchoolMapPin(schoolType = SchoolCatchmentType.PRIMARY)
-        PinToCreateType.SECONDARY_SCHOOL_PIN -> SchoolMapPin(schoolType = SchoolCatchmentType.SECONDARY)
-        PinToCreateType.UNKNOWN_SCHOOL_PIN -> SchoolMapPin(schoolType = SchoolCatchmentType.UNKNOWN)
+        PinType.UNSOLD_PIN -> {
+            if (data.currentlyViewing) {
+                UnsoldViewingMapPin(
+                    isShortListed = data.isShortListed,
+                    markerCount = data.count
+                )
+            } else {
+                UnSoldMapPin(
+                    isShortListed = data.isShortListed,
+                    isSeen = data.isSeen,
+                    markerCount = data.count
+                )
+            }
+        }
+        PinType.SOLD_PIN -> {
+            if (data.currentlyViewing) {
+                SoldViewingMapPin(
+                    isShortListed = data.isShortListed,
+                    markerCount = data.count,
+                    markerPrice = data.price,
+                    iconType = SoldIconType.UNFURLED
+                )
+            } else {
+                SoldMapPin(
+                    isShortListed = data.isShortListed,
+                    markerCount = data.count,
+                    markerPrice = data.price,
+                    iconType = SoldIconType.FURLED
+                )
+            }
+        }
+        PinType.PRIMARY_SCHOOL_PIN -> SchoolMapPin(schoolType = SchoolCatchmentType.PRIMARY)
+        PinType.SECONDARY_SCHOOL_PIN -> SchoolMapPin(schoolType = SchoolCatchmentType.SECONDARY)
+        PinType.UNKNOWN_SCHOOL_PIN -> SchoolMapPin(schoolType = SchoolCatchmentType.UNKNOWN)
     }
 }

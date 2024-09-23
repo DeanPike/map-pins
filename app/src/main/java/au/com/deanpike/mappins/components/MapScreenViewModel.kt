@@ -12,14 +12,26 @@ class MapScreenViewModel : ViewModel() {
     )
         private set
 
-    fun addMapPin(
-        latLng: LatLng, data: MapPinData
-    ) {
+    fun addMapPin(data: MapPinData) {
         val newPins = uiState.mapPins.toMutableMap()
-        newPins[latLng] = data
+        newPins[data.latLng] = data
         uiState = uiState.copy(
             mapPins = newPins
         )
+    }
+
+    fun pinClicked(latLng: LatLng) {
+        val updatedPins = uiState.mapPins.toMutableMap()
+        val data = updatedPins[latLng]
+        data?.let {
+            updatedPins[latLng] = updatedPins[latLng]!!.copy(
+                currentlyViewing = !data.currentlyViewing
+            )
+            uiState = uiState.copy(
+                mapPins = updatedPins
+            )
+        }
+
     }
 }
 

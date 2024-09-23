@@ -30,7 +30,7 @@ import au.com.domain.androiddesigntoken.typography.DomainTypography
 @Composable
 fun UnSoldMapPin(
     isShortListed: Boolean = false,
-    isViewed: Boolean = false,
+    isSeen: Boolean = false,
     markerCount: String = ""
 ) {
     Box(
@@ -40,7 +40,7 @@ fun UnSoldMapPin(
             .background(
                 color = if (isShortListed) {
                     LocalDomainColor.current().neutralMediumDefault
-                } else if (isViewed) {
+                } else if (isSeen) {
                     LocalDomainColor.current().neutralBaseDefault
                 } else {
                     LocalDomainColor.current().interactiveBaseDefault
@@ -109,22 +109,22 @@ fun UnSoldMapPinPreview() {
         Column {
             UnSoldMapPin(
                 isShortListed = false,
-                isViewed = false,
+                isSeen = false,
                 markerCount = "8"
             )
             UnSoldMapPin(
                 isShortListed = true,
-                isViewed = false,
+                isSeen = false,
                 markerCount = "8"
             )
             UnSoldMapPin(
                 isShortListed = false,
-                isViewed = true,
+                isSeen = true,
                 markerCount = "8"
             )
             UnSoldMapPin(
                 isShortListed = true,
-                isViewed = true,
+                isSeen = true,
                 markerCount = "8"
             )
         }
