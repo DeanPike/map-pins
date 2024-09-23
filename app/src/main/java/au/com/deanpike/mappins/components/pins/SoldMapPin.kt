@@ -32,7 +32,7 @@ fun SoldMapPin(
         modifier = Modifier
             .padding(1.dp)
             .border(width = 1.dp, shape = RoundedCornerShape(4.dp), color = LocalDomainColor.current().neutralSurfaceDefault)
-            .background(color = if (isShortListed) LocalDomainColor.current().neutralMediumDefault else LocalDomainColor.current().criticalBaseDefault, shape = RoundedCornerShape(4.dp))
+            .background(color = if (isShortListed) LocalDomainColor.current().neutralMediumDefault else LocalDomainColor.current().accentFiveBaseDefault, shape = RoundedCornerShape(4.dp))
             .defaultMinSize(16.dp, 16.dp)
     ) {
         val markerText = getSoldPinText(

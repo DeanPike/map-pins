@@ -8,7 +8,7 @@
         android:fillType="evenOdd"
         android:pathData="M0.764,4L5,12.472L9.236,4H7L5,8L3,4H0.764Z" />
     <path
-        android:fillColor="@color/neutral_heavy_pressed_domain"
+        android:fillColor="@color/neutral_heavy_default_domain"
         android:fillType="evenOdd"
         android:pathData="M2,2L5,8L8,2H2Z" />
 </vector>

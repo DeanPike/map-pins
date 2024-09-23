@@ -33,7 +33,7 @@ fun UnsoldViewingMapPin(
                 .padding(1.dp)
                 .border(width = 2.dp, shape = RoundedCornerShape(12.dp), color = LocalDomainColor.current().neutralSurfaceDefault)
                 .background(
-                    color = if (isShortListed) LocalDomainColor.current().interactiveBaseSelected else LocalDomainColor.current().interactiveBasePressed,
+                    color = if (isShortListed) LocalDomainColor.current().neutralHeavyDefault else LocalDomainColor.current().interactiveBaseDefault,
                     shape = RoundedCornerShape(12.dp)
                 )
                 .defaultMinSize(24.dp, 24.dp)
