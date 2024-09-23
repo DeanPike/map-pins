@@ -151,63 +151,71 @@ fun BottomSheetContent(
             }
         }
 
-        Row(modifier = Modifier.fillMaxWidth()) {
-            Row(
-                modifier = Modifier.weight(1F),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Text(text = "Seen")
-                Checkbox(
-                    checked = seen,
-                    onCheckedChange = {
-                        seen = !seen
+        if (selectedPinType == PinType.SOLD_PIN || selectedPinType == PinType.UNSOLD_PIN) {
+            Row(modifier = Modifier.fillMaxWidth()) {
+                if (selectedPinType == PinType.UNSOLD_PIN) {
+                    Row(
+                        modifier = Modifier.weight(1F),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Text(text = "Seen")
+                        Checkbox(
+                            checked = seen,
+                            onCheckedChange = {
+                                seen = !seen
+                            }
+                        )
                     }
-                )
-            }
-            Row(
-                modifier = Modifier.weight(1F),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Text(text = "Shortlisted")
-                Checkbox(
-                    checked = shortListed,
-                    onCheckedChange = {
-                        shortListed = !shortListed
-                    }
-                )
+                }
+                Row(
+                    modifier = Modifier.weight(1F),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(text = "Shortlisted")
+                    Checkbox(
+                        checked = shortListed,
+                        onCheckedChange = {
+                            shortListed = !shortListed
+                        }
+                    )
+                }
             }
         }
 
         Row(modifier = Modifier.fillMaxWidth()) {
-            TextField(
-                modifier = Modifier.weight(0.5F),
-                colors = TextFieldDefaults.colors().copy(
-                    focusedContainerColor = LocalDomainColor.current().neutralSurfaceDefault,
-                    unfocusedContainerColor = LocalDomainColor.current().neutralSurfaceDefault,
-                ),
-                label = {
-                    Text(text = "Count")
-                },
-                value = count,
-                onValueChange = {
-                    count = it
-                }
-            )
+            if (selectedPinType == PinType.UNSOLD_PIN) {
+                TextField(
+                    modifier = Modifier.weight(0.5F),
+                    colors = TextFieldDefaults.colors().copy(
+                        focusedContainerColor = LocalDomainColor.current().neutralSurfaceDefault,
+                        unfocusedContainerColor = LocalDomainColor.current().neutralSurfaceDefault,
+                    ),
+                    label = {
+                        Text(text = "Count")
+                    },
+                    value = count,
+                    onValueChange = {
+                        count = it
+                    }
+                )
+            }
             Spacer(modifier = Modifier.width(8.dp))
-            TextField(
-                modifier = Modifier.weight(0.5F),
-                colors = TextFieldDefaults.colors().copy(
-                    focusedContainerColor = LocalDomainColor.current().neutralSurfaceDefault,
-                    unfocusedContainerColor = LocalDomainColor.current().neutralSurfaceDefault,
-                ),
-                label = {
-                    Text(text = "Price")
-                },
-                value = price,
-                onValueChange = {
-                    price = it
-                }
-            )
+            if (selectedPinType == PinType.SOLD_PIN) {
+                TextField(
+                    modifier = Modifier.weight(0.5F),
+                    colors = TextFieldDefaults.colors().copy(
+                        focusedContainerColor = LocalDomainColor.current().neutralSurfaceDefault,
+                        unfocusedContainerColor = LocalDomainColor.current().neutralSurfaceDefault,
+                    ),
+                    label = {
+                        Text(text = "Price")
+                    },
+                    value = price,
+                    onValueChange = {
+                        price = it
+                    }
+                )
+            }
         }
         Spacer(modifier = Modifier.height(16.dp))
 
