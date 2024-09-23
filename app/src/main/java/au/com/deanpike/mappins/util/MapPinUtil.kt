@@ -5,6 +5,7 @@ import androidx.compose.ui.graphics.Color
 import au.com.deanpike.mappins.R
 import au.com.deanpike.mappins.components.MapPinData
 import au.com.deanpike.mappins.components.pins.SchoolMapPin
+import au.com.deanpike.mappins.components.pins.SchoolViewingMapPin
 import au.com.deanpike.mappins.components.pins.SoldMapPin
 import au.com.deanpike.mappins.components.pins.SoldViewingMapPin
 import au.com.deanpike.mappins.components.pins.UnSoldMapPin
@@ -101,8 +102,26 @@ fun CreateMapIcon(
                 )
             }
         }
-        PinType.PRIMARY_SCHOOL_PIN -> SchoolMapPin(schoolType = SchoolCatchmentType.PRIMARY)
-        PinType.SECONDARY_SCHOOL_PIN -> SchoolMapPin(schoolType = SchoolCatchmentType.SECONDARY)
-        PinType.UNKNOWN_SCHOOL_PIN -> SchoolMapPin(schoolType = SchoolCatchmentType.UNKNOWN)
+        PinType.PRIMARY_SCHOOL_PIN -> {
+            if (data.currentlyViewing) {
+                SchoolViewingMapPin(schoolType = SchoolCatchmentType.PRIMARY)
+            } else {
+                SchoolMapPin(schoolType = SchoolCatchmentType.PRIMARY)
+            }
+        }
+        PinType.SECONDARY_SCHOOL_PIN -> {
+            if (data.currentlyViewing) {
+                SchoolViewingMapPin(schoolType = SchoolCatchmentType.SECONDARY)
+            } else {
+                SchoolMapPin(schoolType = SchoolCatchmentType.SECONDARY)
+            }
+        }
+        PinType.UNKNOWN_SCHOOL_PIN -> {
+            if (data.currentlyViewing) {
+                SchoolViewingMapPin(schoolType = SchoolCatchmentType.UNKNOWN)
+            } else {
+                SchoolMapPin(schoolType = SchoolCatchmentType.UNKNOWN)
+            }
+        }
     }
 }
