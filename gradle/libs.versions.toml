@@ -8,11 +8,12 @@ espressoCore = "3.6.1"
 lifecycleRuntimeKtx = "2.8.6"
 activityCompose = "1.9.2"
 composeBom = "2024.09.02"
-mapsVersion="6.1.2"
+mapsVersion = "6.1.2"
 secretsPluginVersion = "2.0.1"
 windowSizeVersion = "1.3.0@aar"
 androidDesignToken = "3.44.0"
 window = "1.3.0"
+lifecycleViewmodelVersion = "2.8.6"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -29,13 +30,14 @@ androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-toolin
 androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
 androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
-maps-compose = {group="com.google.maps.android", name = "maps-compose", version.ref="mapsVersion"}
-material3WindowSizeClass = {group="androidx.compose.material3", name = "material3-window-size-class", version.ref="windowSizeVersion"}
+maps-compose = { group = "com.google.maps.android", name = "maps-compose", version.ref = "mapsVersion" }
+material3WindowSizeClass = { group = "androidx.compose.material3", name = "material3-window-size-class", version.ref = "windowSizeVersion" }
 android-design-token = { module = "au.com.domain:android-design-token", version.ref = "androidDesignToken" }
 androidx-window = { group = "androidx.window", name = "window", version.ref = "window" }
+lifecycle-viewmodel-compose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "lifecycleViewmodelVersion" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
-secrets = {id = "com.google.android.libraries.mapsplatform.secrets-gradle-plugin", version.ref="secretsPluginVersion"}
+secrets = { id = "com.google.android.libraries.mapsplatform.secrets-gradle-plugin", version.ref = "secretsPluginVersion" }

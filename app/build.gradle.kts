@@ -64,6 +64,7 @@ dependencies {
     implementation(libs.material3WindowSizeClass)
     implementation(libs.android.design.token)
     implementation(libs.androidx.window)
+    implementation(libs.lifecycle.viewmodel.compose)
 
     testImplementation(libs.junit)
 
