@@ -21,7 +21,7 @@ import au.com.deanpike.mappins.ui.theme.provider.LocalDomainColor
 import au.com.domain.androiddesigntoken.typography.DomainTypography
 
 @Composable
-fun ViewingUnsoldMapPin(
+fun UnsoldViewingMapPin(
     isShortListed: Boolean = false,
     markerCount: String = ""
 ) {
@@ -104,19 +104,19 @@ fun ViewingUnsoldMapPinPreview() {
             modifier = Modifier.fillMaxWidth(),
             verticalArrangement = Arrangement.SpaceAround
         ) {
-            ViewingUnsoldMapPin(
+            UnsoldViewingMapPin(
                 isShortListed = false,
                 markerCount = "8"
             )
-            ViewingUnsoldMapPin(
+            UnsoldViewingMapPin(
                 isShortListed = true,
                 markerCount = "8"
             )
-            ViewingUnsoldMapPin(
+            UnsoldViewingMapPin(
                 isShortListed = false,
                 markerCount = "88"
             )
-            ViewingUnsoldMapPin(
+            UnsoldViewingMapPin(
                 isShortListed = true,
                 markerCount = "88"
             )

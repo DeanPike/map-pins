@@ -23,7 +23,7 @@ import au.com.deanpike.mappins.util.MapPinUtil.getSoldPinText
 import au.com.domain.androiddesigntoken.typography.DomainTypography
 
 @Composable
-fun ViewingSoldMapPin(
+fun SoldViewingMapPin(
     isShortListed: Boolean = false,
     markerCount: String = "",
     markerPrice: String = "",
@@ -107,38 +107,38 @@ fun ViewingSoldMapPin(
 fun ViewingSoldPinFurledPreview() {
     MappinsTheme() {
         Column {
-            ViewingSoldMapPin(
+            SoldViewingMapPin(
                 isShortListed = false,
                 markerCount = "",
                 markerPrice = "",
                 iconType = SoldIconType.FURLED
             )
-            ViewingSoldMapPin(
+            SoldViewingMapPin(
                 isShortListed = false,
                 markerCount = "8",
                 markerPrice = "",
                 iconType = SoldIconType.FURLED
             )
-            ViewingSoldMapPin(
+            SoldViewingMapPin(
                 isShortListed = false,
                 markerCount = "",
                 markerPrice = "$1.2m",
                 iconType = SoldIconType.FURLED
             )
 
-            ViewingSoldMapPin(
+            SoldViewingMapPin(
                 isShortListed = true,
                 markerCount = "",
                 markerPrice = "",
                 iconType = SoldIconType.FURLED
             )
-            ViewingSoldMapPin(
+            SoldViewingMapPin(
                 isShortListed = true,
                 markerCount = "8",
                 markerPrice = "",
                 iconType = SoldIconType.FURLED
             )
-            ViewingSoldMapPin(
+            SoldViewingMapPin(
                 isShortListed = true,
                 markerCount = "",
                 markerPrice = "$1.2m",
@@ -153,38 +153,38 @@ fun ViewingSoldPinFurledPreview() {
 fun ViewingSoldPinUnFurledPreview() {
     MappinsTheme() {
         Column {
-            ViewingSoldMapPin(
+            SoldViewingMapPin(
                 isShortListed = false,
                 markerCount = "",
                 markerPrice = "",
                 iconType = SoldIconType.UNFURLED
             )
-            ViewingSoldMapPin(
+            SoldViewingMapPin(
                 isShortListed = false,
                 markerCount = "8",
                 markerPrice = "",
                 iconType = SoldIconType.UNFURLED
             )
-            ViewingSoldMapPin(
+            SoldViewingMapPin(
                 isShortListed = false,
                 markerCount = "",
                 markerPrice = "$1.2m",
                 iconType = SoldIconType.UNFURLED
             )
 
-            ViewingSoldMapPin(
+            SoldViewingMapPin(
                 isShortListed = true,
                 markerCount = "",
                 markerPrice = "",
                 iconType = SoldIconType.UNFURLED
             )
-            ViewingSoldMapPin(
+            SoldViewingMapPin(
                 isShortListed = true,
                 markerCount = "8",
                 markerPrice = "",
                 iconType = SoldIconType.UNFURLED
             )
-            ViewingSoldMapPin(
+            SoldViewingMapPin(
                 isShortListed = true,
                 markerCount = "",
                 markerPrice = "$1.2m",
