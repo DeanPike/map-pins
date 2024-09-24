@@ -34,6 +34,14 @@ object MapPinUtil {
             }
         }
     }
+
+    fun getZIndex(pinType: PinType): Float {
+        return when (pinType) {
+            PinType.UNSOLD_PIN -> 2F
+            PinType.SOLD_PIN -> 0F
+            PinType.PRIMARY_SCHOOL_PIN, PinType.SECONDARY_SCHOOL_PIN, PinType.UNKNOWN_SCHOOL_PIN -> 1F
+        }
+    }
 }
 
 @Composable
