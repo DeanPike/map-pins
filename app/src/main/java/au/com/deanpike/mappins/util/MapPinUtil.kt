@@ -3,13 +3,13 @@ package au.com.deanpike.mappins.util
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import au.com.deanpike.mappins.R
-import au.com.deanpike.mappins.components.MapPinData
 import au.com.deanpike.mappins.components.pins.SchoolMapPin
 import au.com.deanpike.mappins.components.pins.SchoolViewingMapPin
 import au.com.deanpike.mappins.components.pins.SoldMapPin
 import au.com.deanpike.mappins.components.pins.SoldViewingMapPin
 import au.com.deanpike.mappins.components.pins.UnSoldMapPin
 import au.com.deanpike.mappins.components.pins.UnsoldViewingMapPin
+import au.com.deanpike.mappins.data.MapPinData
 import au.com.deanpike.mappins.type.PinType
 import au.com.deanpike.mappins.type.SchoolCatchmentType
 import au.com.deanpike.mappins.type.SoldIconType

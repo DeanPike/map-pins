@@ -18,7 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.lifecycle.viewmodel.compose.viewModel
-import au.com.deanpike.mappins.type.PinType
+import au.com.deanpike.mappins.data.MapPinData
 import au.com.deanpike.mappins.util.CreateMapIcon
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
@@ -85,7 +85,7 @@ fun MapScreenContent(
     }
     LaunchedEffect(state.mapPins) {
         mapMarkers.clear()
-        state.mapPins.entries.forEach { entry ->
+        state.mapPins.entries.forEach { entry  ->
             mapMarkers[entry.key] = entry.value
         }
     }
@@ -145,13 +145,3 @@ fun MapScreenContent(
         }
     }
 }
-
-data class MapPinData(
-    val pinType: PinType = PinType.UNSOLD_PIN,
-    val latLng: LatLng = LatLng(0.0, 0.0),
-    val count: String = "",
-    val price: String = "",
-    val isSeen: Boolean = false,
-    val isShortListed: Boolean = false,
-    val currentlyViewing: Boolean = false
-)

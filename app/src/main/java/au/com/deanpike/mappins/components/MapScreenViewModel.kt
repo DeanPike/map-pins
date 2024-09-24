@@ -4,6 +4,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
+import au.com.deanpike.mappins.data.MapPinData
 import com.google.android.gms.maps.model.LatLng
 
 class MapScreenViewModel : ViewModel() {

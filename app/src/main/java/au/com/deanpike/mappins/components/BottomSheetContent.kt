@@ -25,6 +25,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import au.com.deanpike.mappins.R
+import au.com.deanpike.mappins.data.MapPinData
 import au.com.deanpike.mappins.type.PinType
 import au.com.deanpike.mappins.ui.theme.MappinsTheme
 import au.com.deanpike.mappins.ui.theme.provider.LocalDomainColor
