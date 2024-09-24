@@ -13,6 +13,7 @@ import androidx.compose.runtime.mutableStateMapOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
@@ -116,7 +117,9 @@ fun MapScreenContent(
 
     Box {
         Button(
-            modifier = Modifier.padding(start = 16.dp, top = 32.dp),
+            modifier = Modifier
+                .padding(start = 16.dp, top = 32.dp)
+                .align(Alignment.TopStart),
             onClick = {
                 onClearClicked()
             }) {
