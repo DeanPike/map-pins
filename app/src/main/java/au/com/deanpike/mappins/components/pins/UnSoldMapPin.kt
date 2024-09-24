@@ -127,6 +127,11 @@ fun UnSoldMapPinPreview() {
                 isSeen = true,
                 markerCount = "8"
             )
+            UnSoldMapPin(
+                isShortListed = true,
+                isSeen = false,
+                markerCount = ""
+            )
         }
     }
 }
