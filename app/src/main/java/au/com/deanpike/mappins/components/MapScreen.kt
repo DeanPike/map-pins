@@ -1,7 +1,11 @@
 package au.com.deanpike.mappins.components
 
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Button
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -10,6 +14,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.lifecycle.viewmodel.compose.viewModel
 import au.com.deanpike.mappins.type.PinType
@@ -41,6 +46,9 @@ fun MapScreen(
         onPinClicked = { latLng ->
             viewModel.pinClicked(latLng)
 
+        },
+        onClearClicked = {
+            viewModel.onClearClicked()
         }
     )
 }
@@ -50,7 +58,8 @@ fun MapScreenContent(
     innerPadding: PaddingValues,
     state: StateData,
     onPinAdded: (MapPinData) -> Unit,
-    onPinClicked: (LatLng) -> Unit
+    onPinClicked: (LatLng) -> Unit,
+    onClearClicked: () -> Unit
 ) {
     val cameraPositionState: CameraPositionState = rememberCameraPositionState {
         position = CameraPosition.fromLatLngZoom(LatLng(-33.879002, 151.186359), 15.0F)
@@ -102,6 +111,16 @@ fun MapScreenContent(
             ) {
                 CreateMapIcon(entry.value)
             }
+        }
+    }
+
+    Box {
+        Button(
+            modifier = Modifier.padding(start = 16.dp, top = 32.dp),
+            onClick = {
+                onClearClicked()
+            }) {
+            Text(text = "Clear")
         }
     }
 

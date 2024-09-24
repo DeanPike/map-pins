@@ -33,6 +33,12 @@ class MapScreenViewModel : ViewModel() {
         }
 
     }
+
+    fun onClearClicked() {
+        uiState = uiState.copy(
+            mapPins = mutableMapOf()
+        )
+    }
 }
 
 data class StateData(
