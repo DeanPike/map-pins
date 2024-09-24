@@ -230,7 +230,12 @@ fun BottomSheetContent(
                         count = count,
                         price = price,
                         isSeen = seen,
-                        isShortListed = shortListed
+                        isShortListed = shortListed,
+                        index = when (selectedPinType) {
+                            PinType.UNSOLD_PIN -> 2F
+                            PinType.SOLD_PIN -> 0F
+                            PinType.PRIMARY_SCHOOL_PIN, PinType.SECONDARY_SCHOOL_PIN, PinType.UNKNOWN_SCHOOL_PIN -> 1F
+                        }
                     )
                 )
             }

@@ -10,5 +10,6 @@ data class MapPinData(
     val price: String = "",
     val isSeen: Boolean = false,
     val isShortListed: Boolean = false,
-    val currentlyViewing: Boolean = false
+    val currentlyViewing: Boolean = false,
+    val index: Float = 0F
 )

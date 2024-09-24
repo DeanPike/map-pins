@@ -85,7 +85,7 @@ fun MapScreenContent(
     }
     LaunchedEffect(state.mapPins) {
         mapMarkers.clear()
-        state.mapPins.entries.forEach { entry  ->
+        state.mapPins.entries.forEach { entry ->
             mapMarkers[entry.key] = entry.value
         }
     }
@@ -108,7 +108,8 @@ fun MapScreenContent(
                 onClick = { marker ->
                     onPinClicked(marker.position)
                     true
-                }
+                },
+                zIndex = if (entry.value.currentlyViewing) 3F else entry.value.index
             ) {
                 CreateMapIcon(entry.value)
             }
