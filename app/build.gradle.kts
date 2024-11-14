@@ -7,7 +7,7 @@ plugins {
 
 android {
     namespace = "au.com.deanpike.mappins"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "au.com.deanpike.mappins"
